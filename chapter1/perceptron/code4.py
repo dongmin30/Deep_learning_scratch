@@ -1,3 +1,4 @@
+# 다층 퍼셉트론 구조를 활용하여 XOR 게이트 구현
 import numpy as np
 def AND(x1, x2):
   x = np.array([x1, x2])

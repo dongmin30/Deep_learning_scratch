@@ -1,3 +1,4 @@
+# numpy와 편향, 가중치 개념을 주어 AND 게이트 구현
 import numpy as np
 def AND(x1, x2):
   x = np.array([x1, x2])

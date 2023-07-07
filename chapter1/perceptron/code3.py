@@ -1,3 +1,4 @@
+# NAND 및 OR 게이트 구현
 import numpy as np
 def NAND(x1, x2):
   x = np.array([x1, x2])
