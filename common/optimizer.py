@@ -31,7 +31,7 @@ class Momentum:
       params[key] += self.v[key]
 
 class AdaGrad:
-  def __init__(self):
+  def __init__(self, lr=0.01):
     self.lr = lr
     self.h = None
     
