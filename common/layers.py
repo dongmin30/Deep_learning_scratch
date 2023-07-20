@@ -205,12 +205,12 @@ class Convolution:
         self.b = b
         self.stride = stride
         self.pad = pad
-
+        
         # 중간 데이터（backward 시 사용）
-        self.x = None
+        self.x = None   
         self.col = None
         self.col_W = None
-
+        
         # 가중치와 편향 매개변수의 기울기
         self.dW = None
         self.db = None
@@ -235,7 +235,7 @@ class Convolution:
 
     def backward(self, dout):
         FN, C, FH, FW = self.W.shape
-        dout = dout.transpose(0, 2, 3, 1).reshape(-1, FN)
+        dout = dout.transpose(0,2,3,1).reshape(-1, FN)
 
         self.db = np.sum(dout, axis=0)
         self.dW = np.dot(self.col.T, dout)
@@ -253,7 +253,7 @@ class Pooling:
         self.pool_w = pool_w
         self.stride = stride
         self.pad = pad
-
+        
         self.x = None
         self.arg_max = None
 
@@ -276,15 +276,13 @@ class Pooling:
 
     def backward(self, dout):
         dout = dout.transpose(0, 2, 3, 1)
-
+        
         pool_size = self.pool_h * self.pool_w
         dmax = np.zeros((dout.size, pool_size))
-        dmax[np.arange(self.arg_max.size),
-             self.arg_max.flatten()] = dout.flatten()
-        dmax = dmax.reshape(dout.shape + (pool_size,))
-
+        dmax[np.arange(self.arg_max.size), self.arg_max.flatten()] = dout.flatten()
+        dmax = dmax.reshape(dout.shape + (pool_size,)) 
+        
         dcol = dmax.reshape(dmax.shape[0] * dmax.shape[1] * dmax.shape[2], -1)
-        dx = col2im(dcol, self.x.shape, self.pool_h,
-                    self.pool_w, self.stride, self.pad)
-
+        dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
+        
         return dx
