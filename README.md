@@ -1,2 +1,3 @@
 # Python_scratch
-# 밑바닥 부터 시작하는 딥러닝 교재 학습 코드
+# Deep learning textbook learning code starting from the bottom
+The contents of the textbook and study content were saved in Notion and continued study.
